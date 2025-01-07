@@ -1,0 +1,12 @@
+.git*
+.vscode
+rsync*
+client*
+node_modules/
+.editorconfig
+.env*
+.eslint*
+.prettier*
+bitbucket*
+sonar*
+upload*

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+
+</head>
+
+<body>
+
+
+    <div class="main-wrapper" style="max-width: 800px; margin: 0px auto;">
+        <table>
+            <tbody>
+                <tr>
+                    <td colspan="2" style="border: none;">
+                        <p style="text-align: center;margin-bottom: 5px;font-weight: bold;font-size: 24px;">{{firstName}} {{lastName}} </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="border: none;">
+                        <p style="text-align: center;font-weight: bold;font-size: 18px;margin-bottom: 5px;">{{jobTitle}}
+                        </p>
+                    </td>
+                </tr>
+                <!-- <tr>
+                    <td colspan="2" style="border: none;">
+                        <p style="text-align: center; margin: 0px;"> BSIT University of Education - Pakistan</p>
+                    </td>
+                </tr> -->
+                <tr>
+                    <td style="padding: 20px 0px 10px;border-bottom: 2px solid;border: none;">
+                        <b>{{phoneNumber}} </b>
+                    </td>
+                    <td style="text-align: right;padding: 20px 0px 10px;border-bottom: 2px solid;border: none;">
+                        <b>{{email}} </b>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="padding: 10px 0px;border: none;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="background: rgb(204, 204, 204);padding: 8px 0px;border: none;">
+                        <p
+                            style="text-align: center;margin: 0px;text-decoration: underline;font-weight: bold;font-size: 20px;">Profile </p>
+                    </td>
+                </tr>
+                <tr>
+
+                    <td colspan="2" style="padding: 10px 0px 30px 20px;border: none;">
+                        <p style="text-align: center; margin: 0px;">{{description}}.</p>
+                    </td>
+                </tr>
+
+
+
+                <tr>
+                    <td colspan="2" style="background: #ccc;padding: 8px 0;border: none;">
+                        <p
+                            style="text-align: center;margin: 0px;text-decoration: underline;font-weight: bold;font-size: 20px;">WORK HISTORY</p>
+                    </td>
+                </tr>
+
+
+                {% for data in employerHistory %}
+
+                <tr>
+                    <td
+                        style="vertical-align: text-top; padding-top: 10px;  text-align: left; border: 0px;border: none;">
+                        <p style="margin: 0px;border: 0px;font-weight: bold;"> {{data.job}}</p>
+                    </td>
+                    <td style="padding: 10px 0px 0px 20px;border: none; ">
+                        <p style="text-align: right; margin: 0px;">{{data.s_date}} to {% if data.still_working %} Still Working {% else %} {{data.e_date}} {% endif %}
+                            <br />{{data.company}}
+                        </p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td colspan="2" style="padding: 0px 0px 10px;border: none;">
+                            {% for job in data.description %}
+                            <p>{{job}}</p>
+                            {%endfor %}
+
+                        </ul>
+                    </td>
+                </tr>
+                {%endfor %}
+
+
+                <tr>
+                    <td colspan="2" style="background: #ccc;vertical-align: text-top;padding: 8px 0;border: none;">
+                        <p
+                            style="text-align: center;margin: 0px;text-decoration: underline;font-weight: bold;font-size: 20px;">EDUCATION</p>
+                    </td>
+                </tr>
+
+
+                {% for data in education %}
+                <tr>
+                    <td style="padding-top: 10px;border: none;">
+                        <p style="text-align: left; margin: 0px; border: 0px;"><b>{{data.degree}} </b>{{data.school}} -
+                            {{data.country}}
+                        </p>
+                    </td>
+                    <td style="padding-top: 10px;border: none;">
+                        <p style="text-align: right; margin: 0px; border: 0px;">{{data.s_date}} to {{data.e_date}}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="padding: 10px 0;border: none;">
+                        <p style="text-align: left; margin: 0px; border: 0px;">{{data.description}}</p>
+                    </td>
+                </tr>
+
+                {%endfor %}
+
+                <tr>
+                    <td colspan="2" style="background: #ccc;padding: 8px 0;border: none;">
+                        <p
+                            style="text-align: center;margin: 0px;text-decoration: underline;font-weight: bold;font-size: 20px;">SKILLS</p>
+                    </td>
+                </tr>
+                {% for data in skills %}
+                <tr>
+                    
+                    <td style="padding-right: 20px; text-align: left; text-transform: capitalize;border: none;">
+                        {{data.skill_name}}</td>
+                    <td style="text-align: right;border: none;"><b>Expert</b></td>
+                   
+
+                </tr>
+                {%endfor %}
+                <tr>
+                    <td colspan="2" style="background: #ccc;padding: 8px 0;border: none;">
+                        <p
+                            style="text-align: center;margin: 0px;text-decoration: underline;font-weight: bold;font-size: 20px;">Additional Information</p>
+                    </td>
+                </tr>
+
+                <tr>
+
+                    <td colspan="2" style="padding: 10px 0 ;border: none;">
+                        <p style="text-align: left; margin: 0px; border: 0px;">{{hobbies}}</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>

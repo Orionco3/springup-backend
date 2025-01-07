@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Resume</title>
+</head>
+<body>
+	<div style="margin:10%;">
+		
+		
+<!-- main div start -->
+
+		
+		<table style=" width: 100%;">
+			<tr>
+				<td style="width: 65%;  text-align: left; justify-content: left;">
+					<h3><strong style="background-color:#A9A9A9;">{{firstName}} {{lastName}}</strong></h3>
+					
+					<div style="margin-top: -10px;">
+						<p style="font-size:8px;">{{jobTitle}}</p>
+					<p style="font-size:8px;"><strong>Date Of Birth:</strong> Oct 1, 1996</p>
+					<p style="font-size:8px;"><strong>Nationality:</strong> {{city}} - {{state}}</p>
+					<p style="font-size:8px;"><strong>Gender:</strong> Male</p>
+				</div>
+					
+
+				</td>
+				<td style="width:35%;text-align: right; justify-content:right;">
+					<img src={{imageUrl}} style="width: 70px; height: 70px; border:solid black 2px;  border-radius:50%; float: right; ">
+					
+					<div style="margin-top: 80px;">
+						<p style="font-size:8px;"><strong>Current Address:</strong></p>
+					<p style="font-size:8px;">{{address}}</p>
+					<p style="font-size:8px;"><strong>Contact No:</strong>{{phone}}</p>
+					<p style="font-size:8px;"><strong>Email:</strong>{{email}}</p>
+
+					</div>
+
+					
+				<!-- 	<div>
+						<p style="font-size:8px;"><strong>Current Address:</strong></p>
+					<p style="font-size:8px;">{{address}}</p>
+					
+					</div> -->
+					
+					
+				</td>
+			</tr>
+		</table>
+	
+	<!-- header part end -->
+
+	<!--objective part-->
+	
+		<table style="width:100%;">
+			<tr>
+				<td style="width:100%; text-align:left; justify-content:left;">
+					<h5><strong  style="background-color:#A9A9A9;">OBJECTIVE:</strong></h5>
+					<p style="font-size:8.5px; margin-top: -10px;"> {{perfessionalSummery}} </p>
+				</td>
+				
+			</tr>
+		</table>
+
+		<!-- objective end-->
+
+		<!--experience-->
+		<div>
+			<h5><strong  style="background-color:#A9A9A9;">EXPERIENCE:</strong></h5>
+		<table style="width:100%;margin-top:-20px;">
+
+			 {% for job in jobDetail %}
+			<tr >
+				<td style="width:65%; text-align:left; justify-content:left;">
+					<p style="font-size:10px;"><strong>{{job.job_title}}</strong></p>
+					<p style="font-size: 8px; font-style: normal;">{{job.job_discription}}</p>
+					<p style="font-size: 8px;">{{job.job_Company}}</p>
+				</td>
+				<td style="width:35%; text-align:right; justify-content:right;">
+			       <p style="font-size:8px;"><strong>({{job.from_job_month}} {{job.from_job_year}} _ {{job.to_job_month}} {{job.from_job_year}} )</strong></p>
+				</td>
+			</tr>
+			    {% endfor %}
+		</table>
+</div>
+
+		
+		<!--education-->
+
+		<div>
+			<h5><strong  style="background-color:#A9A9A9;">EDUCATION:</strong></h5>
+		<table style="width:100%; margin-top: -20px;">
+			{% for eduction in eductionDetail %}
+			<tr>
+				<td style="width:65%; text-align:left; justify-content:left;">
+					<p style="font-size:10px;"><strong>{{eduction.fieldStudy}}</strong></h3></p>
+					<p style="font-size: 8px; font-style: normal;">{{eduction.orgName}}</p>
+					<p style="font-size: 8px;">{{eduction.level_education}}</p>
+				</td>
+				<td style="width:35%; text-align:right; justify-content:right;">
+					<p style="font-size:8px"><strong>({{eduction.to_month}} {{eduction.to_year}} _ {{eduction.from_month}} {{eduction.from_year}})</strong></p>
+				</td>
+			</tr>
+			{% endfor %}
+		</table>
+</div>
+
+
+
+
+		<!--Projecrts-->
+		<div>
+</div>
+		<!-- skills -->
+<div>
+	<h5><strong  style="background-color:#A9A9A9;">SKILLS:</strong></h5>
+		<table style="width:100%;margin-top:-20px;">
+			
+			<tr style="">
+
+				<table style="width:100%;">
+					<tr>
+						<td style="width:30%;">
+							<p style="font-size:9px;"><strong>Web FrameWork:</strong></p>
+						</td>
+						<td style="width:70%;">
+							
+							<p style="font-size:9px;">{% for skill in experienceWith %}  &nbsp; | &nbsp; {{skill}} 
+							{% endfor %}</p>
+							
+						</td>
+						
+					</tr>
+				</table>
+			</tr>
+		</table>
+
+</div>
+		<!-- skills -->
+		<div>
+			<h5><strong  style="background-color:#A9A9A9;">ACHIVEMENTS:</strong></h5>
+		<table style="width:100%;margin-top:-20px;">
+		
+			<tr style="">
+				<td style="width:100%;">
+							<ul style="font-size:9px;">
+								<li>Participated in Youth Program Coding Competition</li>
+								<li>Participated in Youth Program Gaming Competition</li>
+								<li>Programming Competition winner at University of Eduction</li>
+								<li>Runner up at University of Eduction Gaming Competition</li>
+							</ul>
+						</td>
+						
+					
+			</tr>
+		</table>
+	</div>
+
+
+		<!-- [Personal Developemment] -->
+<div>
+	<h5><strong  style="background-color:#A9A9A9;">PROFESSIONAL DEVELOPMENT:</strong></h5>
+		<table style="width:100%;margin-top:-20px;">
+			
+			<tr style="">
+
+				
+						<td style="width:30%;">
+							<ul style="font-size:9px;">
+								<li>Attended various seminars and training on professional Grooming</li>
+								<li>Android Development Workshop, University of Lahore, Lahore</li>
+								<li>Website Development Workshop, University of Lahore, Lahore</li>
+								
+							</ul>
+						</td>
+						
+								</tr>
+		</table>
+	</div>
+
+
+
+		<!-- [Personal Developemment] -->
+<div>
+	<h5><strong  style="background-color:#A9A9A9;">REFERENCES:</strong></h5>
+		<table style="width:100%; margin-top:-20px;">
+			
+			<tr style="">
+
+				<p style="font-size:8px;">Reference will be provided on Request</p>
+			</tr>
+		</table>
+
+</div>
+		
+
+<!-- main div end -->
+	</div>
+</body>
+</html>

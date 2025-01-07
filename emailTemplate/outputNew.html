@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+
+
+    <script>
+
+
+
+    </script>
+
+</head>
+
+<body>
+
+
+    <div class="main-wrapper">
+        <table style="border-collapse: collapse;border: none;border-style: none;">
+            <tbody>
+                <tr>
+                    <td colspan="2"
+                        style="background-color: rgb(137, 207, 235); padding: 30px 0px 20px; border-bottom: 2px solid;">
+                        <p style="text-align: center; margin: 0px;">{{phoneNumber}} | {{email}}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="padding: 30px 0px;">
+                        <h1 style="text-align: center;margin: 0;font-size: 20px;">{{firstName}} {{lastName}} </h1>
+                    </td>
+                </tr>
+                <tr>
+                    <td
+                        style="border-top: 2px solid; vertical-align: text-top; font-weight: bold; padding-top: 10px;  text-align: left;">
+                        <p style="margin: 0px;">PROFESSIONAL SUMMARY</p>
+                    </td>
+                    <td style="border-top: 2px solid; padding: 10px 0px 30px 20px; ">
+                        <p style="text-align: left; margin: 0px;">
+                            {{description}}.</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td
+                        style="border-top: 2px solid; vertical-align: text-top; font-weight: bold; padding-top: 10px;  text-align: left;">
+                        <p style="margin: 0px;">SKILLS</p>
+                    </td>
+                    <td style="border-top: 2px solid; padding: 10px 0px 20px 20px; ">
+                        <ul>
+
+                            {% for data in skills %}
+                            <li>{{data.skill_name}}</li>
+                            {%endfor %}
+
+                        </ul>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td colspan="2"
+                        style="border-top: 2px solid; vertical-align: text-top; font-weight: bold; padding-top: 10px; text-align: left;">
+                        <p style="margin: 0px;">WORK HISTORY</p>
+                    </td>
+                </tr>
+
+                {% for data in employerHistory %}
+
+                <tr>
+                    <td style="vertical-align: text-top; padding-top: 10px;  text-align: left; border: 0px;">
+                        <p style="margin: 0px; border: 0px;"> {{data.job}}</p>
+                    </td>
+                    <td style="padding: 10px 0px 0px 20px;">
+                        <p style="text-align: right; margin: 0px;">{{data.s_date}} to
+
+                            {% if data.still_working %}
+
+                            Still Working
+
+                            {% else %}
+
+                            {{data.e_date}}
+
+                            {% endif %}
+
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="padding: 0px; ">
+                        <p style="text-align: left; margin: 0px;">{{data.company}}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="border-bottom: 2px solid; padding: 0px 0px 30px; ">
+                        <ul
+                            style="padding-left: 20px; text-align: left; margin-top: 10px;margin-bottom: 0;list-style: none;">
+                            {% for job in data.description %}
+                            <li style="list-style-type: none;">{{job}}</li>
+                            {%endfor %}
+                        </ul>
+                    </td>
+                </tr>
+
+                {%endfor %}
+
+                {% for data in education %}
+
+
+                <tr>
+                    <td colspan="2"
+                        style="vertical-align: text-top; font-weight: bold; padding-top: 10px;  text-align: left;">
+                        <p style="margin: 0px;">EDUCATION</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding: 0px;">
+                        <p style="text-align: left; margin: 0px; border: 0px;"><b>{{data.degree}} </b> {{data.school}} -
+                            {{data.country}}
+                        </p>
+                    </td>
+                    <td style="padding: 0px; ">
+                        <p style="text-align: right; margin: 0px; border: 0px;">{{data.s_date}} to {{data.e_date}}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="padding: 0px;padding-bottom: 20px;">
+                        <p style="text-align: left; margin: 0px; border: 0px;">{{data.description}}.</p>
+                    </td>
+                </tr>
+                {%endfor %}
+
+                <tr>
+                    <td colspan="2"
+                        style="border-top: 2px solid; vertical-align: text-top; font-weight: bold; padding-top: 10px;  text-align: left;">
+                        <p style="margin: 0px;">Additional Information</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" style=" padding: 10px 0px 30px;">
+                        <p style="text-align: left; margin: 0px; border: 0px;">{{hobbies}}</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>
