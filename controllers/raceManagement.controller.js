@@ -60,7 +60,7 @@ exports.index = async function (req, res) {
         } else {
           activeStageData = {
             isProgress: true,
-            duration: durationLeft
+            duration: durationLeft,
           }
           break;
         }
