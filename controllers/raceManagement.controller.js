@@ -12,11 +12,11 @@ const mongoose = require("mongoose");
 
 exports.index = async function (req, res) {
   try {
-
     let currentStageId = "";
     let currentStageNumber = 0;
 
     let activeStageData = {
+      isTimeout: false,
       isProgress: false,
       duration: 0
     };
@@ -27,17 +27,12 @@ exports.index = async function (req, res) {
     const raceResultId = await RACE.findOne({ _id: payload.raceId }).exec();
 
     for (let x = 0; payload.routes[0].stageId.length > x; x++) {
-      console.log({
-        userId: req.user,
-        raceId: payload.raceId,
-        stageId: payload.routes[0].stageId[x]._id,
-      });
       const result = await RACEHISTORY.findOne({
         userId: req.user,
         raceId: payload.raceId,
         stageId: payload.routes[0].stageId[x],
       }).exec();
-      console.log(result);
+    console.log(payload.routes[0].stageId[x].name, result);
       if (result && result?.isCompleted === false) {
 
         currentStageId = payload.routes[0].stageId[x];
@@ -46,19 +41,26 @@ exports.index = async function (req, res) {
 
         let durationLeft = calculateTimeLeft(result.checkIn, parseInt(currentStageId.maxDuration))
 
-        if (durationLeft == 0) {
-          const obj = {
-            scoreSecondWin: -parseInt(raceResultId.penalityPerLocation),
-            timeTaken: parseInt(currentStageId.maxDuration),
-            timeSaved: 0,
-            penality: -parseInt(raceResultId.penalityPerLocation),
-            isPenality: true,
-            isCompleted: true,
-            checkOut: new Date(),
-          };
-          await RACEHISTORY.updateOne({ _id: result._id }, obj, { upsert: true });
+        if (durationLeft <= 0) {
+              const obj = {
+                scoreSecondWin: -parseInt(raceResultId.penalityPerLocation),
+                timeTaken: parseInt(currentStageId.maxDuration),
+                timeSaved: 0,
+                penality: -parseInt(raceResultId.penalityPerLocation),
+                isPenality: true,
+                isCompleted: true,
+                checkOut: new Date(),
+              };
+              await RACEHISTORY.updateOne({ _id: result._id }, obj, { upsert: true });
+                activeStageData = {
+                    isTimeout: true,
+                    isProgress: true,
+                    duration: durationLeft,
+                }
+                break;
         } else {
           activeStageData = {
+            isTimeout: false,
             isProgress: true,
             duration: durationLeft,
           }
@@ -71,6 +73,7 @@ exports.index = async function (req, res) {
         currentStageId = await STAGE.findOne({ _id: currentStageId._id }).exec();
         currentStageNumber = x + 1;
         activeStageData = {
+          isTimeout: false,
           isProgress: false,
           duration: parseInt(currentStageId.maxDuration)
         }
